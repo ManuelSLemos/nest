@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "@nestpy/core"
+version = "0.1.0"
+description = "Modern, fast, powerful node.js web framework"
+authors = ["Manuel S. Lemos"]
+readme = "README.md"
+license = "MIT"
+# packages = [{include = "nestpy"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
