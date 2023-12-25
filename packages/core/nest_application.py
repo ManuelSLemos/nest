@@ -3,7 +3,9 @@ from fastapi import FastAPI, APIRouter
 
 import uvicorn
 
-class NestAplication():
+from packages.common.interfaces.nest_application_interface import INestAplication
+
+class NestAplication(INestAplication):
     app = FastAPI()
 
     @app.get("/")
@@ -13,9 +15,5 @@ class NestAplication():
     def __init__(self):
         pass
     
-    def listen(self, port: int = 8080) -> None:
-        uvicorn.run(
-            self.app,
-            host="0.0.0.0",
-            port=port,
-        )
+    def listen(self, host: str = '0.0.0.0', port: int = 8080) -> None:
+        uvicorn.run( self.app, host=host, port=port )
