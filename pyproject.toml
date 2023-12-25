@@ -3,7 +3,7 @@ name = "@nestpy/core"
 version = "0.1.0"
 description = "Modern, fast, powerful node.js web framework"
 authors = ["Manuel S. Lemos"]
-readme = "README.md"
+# readme = "README.md"
 license = "MIT"
 # packages = [{include = "nestpy"}]
 
