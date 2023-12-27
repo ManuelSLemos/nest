@@ -15,10 +15,6 @@ class NestAplication(INestAplication):
         ):
             self.app = FastAPI( debug = options.debug, docs_url = None, redoc_url = None )
 
-            @self.app.get("/")
-            def read_root():
-                return {"Hello": "World"}
-
     def enableCors(self, options: CorsOptions = None):
         self.app.add_middleware(
             CORSMiddleware,
