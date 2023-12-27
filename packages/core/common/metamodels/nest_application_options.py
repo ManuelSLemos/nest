@@ -2,14 +2,11 @@ from enum import Enum
 from pydantic import BaseModel
 from typing import ( Any, Dict, List, Optional, Union )
 
-Wildcard = Enum('Wildcard', ['*'])
-HttpMethod = Enum('HttpMethod', ['GET', 'POST', 'PUT', 'DELETE'])
-
 class CorsOptions(BaseModel):
-    origin: List[Wildcard] | List[str] = ['*']
-    methods: List[Wildcard] | List[HttpMethod] = ['*']
-    allowedHeaders: List[Wildcard] | List[str] = ['*']
-    exposedHeaders: List[Wildcard] | List[str] = ['*']
+    origins: List[str] = ['*']
+    methods: List[str] = ['*']
+    allowedHeaders: List[str] = ['*']
+    exposedHeaders: List[str] = ['*']
     credentials: bool = False
     maxAge: int = 3600
     # preflightContinue: Optional[bool] = None
@@ -35,6 +32,6 @@ class SwaggerOptions(BaseModel):
 
 class NestApplicationOptions(BaseModel):
     debug: bool = False
-    cors: CorsOptions = {}
+    cors: CorsOptions = CorsOptions()
     swagger: SwaggerOptions = {}
 

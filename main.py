@@ -1,10 +1,25 @@
 from packages.core.nest_application import NestAplication
+from packages.core.common.metamodels.nest_application_options import ( NestApplicationOptions, CorsOptions )
 
 def bootstrap():
-    app = NestAplication()
+    app = NestAplication(options=NestApplicationOptions(cors=CorsOptions(credentials=True)))
+
+    app.enableCors(options=CorsOptions(credentials=False))
 
     @app.app.get("/")
     def read_root():
+        return {"Hello": "World"}
+
+    @app.app.post("/")
+    def create_root():
+        return {"Hello": "World"}
+
+    @app.app.put("/")
+    def update_root():
+        return {"Hello": "World"}
+
+    @app.app.delete("/")
+    def delete_root():
         return {"Hello": "World"}
 
     app.listen( host='0.0.0.0', port=3000 )
