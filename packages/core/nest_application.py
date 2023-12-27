@@ -4,8 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import uvicorn
 
-from packages.common.interfaces.nest_application_interface import INestAplication
-from packages.core.nest_application_options import ( NestApplicationOptions, CorsOptions, SwaggerOptions )
+from packages.core.common.interfaces.nest_application_interface import INestAplication
+from packages.core.common.metamodels.nest_application_options import ( NestApplicationOptions, CorsOptions, SwaggerOptions )
 
 class NestAplication(INestAplication):
     
