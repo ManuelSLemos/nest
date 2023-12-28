@@ -26,8 +26,6 @@ class SwaggerOptions(BaseModel):
     contact: Optional[Dict[str, Union[str, Any]]] = None
     license_info: Optional[Dict[str, Union[str, Any]]] = None
     separate_input_output_schemas: bool = True
-    docs_url: str = '/docs'
-    redoc_url: str = '/redoc'
 
 class NestApplicationOptions(BaseModel):
     debug: bool = False

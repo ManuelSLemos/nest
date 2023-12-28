@@ -31,7 +31,6 @@ class NestAplication(INestAplication):
             max_age=options.maxAge
         )
 
-
     def enableSwaggerUI(self, url: str = '/docs', options: SwaggerOptions = None) -> None:
         self.__enableOpenapi(options)
         self.app.docs_url = url
