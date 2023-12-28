@@ -1,13 +1,19 @@
 from abc import ( ABC, abstractmethod )
 
+from packages.core.common.metamodels.nest_application_options import ( NestApplicationOptions, CorsOptions, SwaggerOptions )
+
 class INestAplication(ABC):
 
     @abstractmethod
-    def enableCors(self, options = None):
+    def enableCors(self, options: CorsOptions = None):
         pass
 
     @abstractmethod
-    def enableSwaggerUI(self, options = None):
+    def enableSwaggerUI(self, options: SwaggerOptions = None):
+        pass
+
+    @abstractmethod
+    def enableRedoc(self, options: SwaggerOptions = None):
         pass
 
     @abstractmethod

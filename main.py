@@ -4,7 +4,8 @@ from packages.core.common.metamodels.nest_application_options import ( NestAppli
 def bootstrap():
     app = NestAplication(options=NestApplicationOptions(cors=CorsOptions(credentials=True)))
 
-    app.enableSwaggerUI(options=SwaggerOptions(docs_url='/swagger'))
+    app.enableSwaggerUI('/docs')
+    app.enableRedoc('/redoc')
 
     app.enableCors(options=CorsOptions(credentials=False))
 

@@ -31,13 +31,14 @@ class NestAplication(INestAplication):
             max_age=options.maxAge
         )
 
-    def enableSwaggerUI(self, options: SwaggerOptions = None) -> None:
-        if options is not None:
-            self.options.swagger = options
 
-        self.app.docs_url = self.options.swagger.docs_url
-        self.app.redoc_url = self.options.swagger.redoc_url
-        self.app.openapi = self.__openapi
+    def enableSwaggerUI(self, url: str = '/docs', options: SwaggerOptions = None) -> None:
+        self.__enableOpenapi(options)
+        self.app.docs_url = url
+
+    def enableRedoc(self, url: str = '/redoc', options: SwaggerOptions = None) -> None:
+        self.__enableOpenapi(options)
+        self.app.redoc_url = url
     
     def listen(self, host: str = '0.0.0.0', port: int = 8080) -> None:
         self.app.setup()
@@ -67,6 +68,15 @@ class NestAplication(INestAplication):
         self.app.openapi_schema = openapi_schema
 
         return self.app.openapi_schema
+
+    def __enableOpenapi(self, options: SwaggerOptions = None):
+        if options is not None:
+            self.options.swagger = options
+
+        self.app.openapi = self.__openapi
+
+
+
 
 
     
