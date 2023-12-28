@@ -31,7 +31,7 @@ class NestAplication(INestAplication):
             max_age=options.maxAge
         )
 
-    def enableSwagger(self, options: SwaggerOptions = None) -> None:
+    def enableSwaggerUI(self, options: SwaggerOptions = None) -> None:
         if options is not None:
             self.options.swagger = options
 

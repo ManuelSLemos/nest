@@ -7,7 +7,7 @@ class INestAplication(ABC):
         pass
 
     @abstractmethod
-    def enableSwagger(self, options = None):
+    def enableSwaggerUI(self, options = None):
         pass
 
     @abstractmethod
