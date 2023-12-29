@@ -1,5 +1,5 @@
 from packages.core.common.decorators.module_decorator import Module
-from .app_controller import AppController
+from app_controller import AppController
 
 @Module(
     controllers=[AppController]

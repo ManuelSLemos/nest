@@ -31,3 +31,11 @@ class INestAplication(ABC):
 
         """    
         pass
+    
+    @abstractmethod
+    def _register_modules(self):
+        """
+        Registers the modules from the app modules.
+        """
+        pass
+

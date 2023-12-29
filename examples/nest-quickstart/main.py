@@ -1,13 +1,13 @@
 from packages.core.nest_application import NestAplication
-from packages.core.common.metamodels.nest_application_options import ( NestApplicationOptions, CorsOptions )
+from app_module import AppModule
 
 def bootstrap():
-    app = NestAplication(options=NestApplicationOptions(cors=CorsOptions(credentials=True)))
+    app = NestAplication( AppModule )
 
     app.enableSwaggerUI('/docs')
     app.enableRedoc('/redoc')
 
-    app.enableCors(options=CorsOptions(credentials=False))
+    app.enableCors()
 
     @app.app.get("/")
     def read_root():

@@ -1,10 +1,13 @@
-from typing import List, Dict, Any
+from typing import ( List, Dict, Any )
 
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 
 import uvicorn
+import logging
+
+logger = logging.getLogger(__name__)
 
 from packages.core.common.interfaces.nest_application_interface import INestAplication
 from packages.core.common.metamodels.nest_application_options import ( NestApplicationOptions, CorsOptions, SwaggerOptions )
@@ -12,11 +15,16 @@ from packages.core.common.metamodels.nest_application_options import ( NestAppli
 class NestAplication(INestAplication):
     
     def __init__(
-            self, 
+            self,
+            appModule: Any,
             options: NestApplicationOptions = NestApplicationOptions()
         ):
-            self.app = FastAPI( debug = options.debug, docs_url=None, redoc_url=None )
+            self.appModule = appModule
             self.options = options
+
+            self.app = FastAPI( debug = options.debug, docs_url=None, redoc_url=None )
+            self._register_modules()
+
 
     def enableCors(self, options: CorsOptions = None) -> None:
         options = self.options.cors if options is None else options
@@ -43,6 +51,11 @@ class NestAplication(INestAplication):
         self.app.setup()
 
         uvicorn.run( self.app, host=host, port=port )
+
+    def _register_modules(self):
+        for controller in self.appModule().controllers:
+            logger.info(controller().path)
+            print(controller().path)
 
     def __openapi(self):
         if self.app.openapi_schema:
@@ -73,7 +86,6 @@ class NestAplication(INestAplication):
             self.options.swagger = options
 
         self.app.openapi = self.__openapi
-
 
 
 
