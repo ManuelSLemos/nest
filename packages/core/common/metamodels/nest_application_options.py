@@ -2,6 +2,7 @@ from enum import Enum
 from pydantic import BaseModel
 from typing import ( Any, Dict, List, Optional, Union )
 
+# TODO: Create http verbs list 
 class CorsOptions(BaseModel):
     origins: List[str] = ['*']
     methods: List[str] = ['*']
