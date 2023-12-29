@@ -1,5 +1,5 @@
 from packages.core.nest_application import NestAplication
-from packages.core.common.metamodels.nest_application_options import ( NestApplicationOptions, CorsOptions, SwaggerOptions )
+from packages.core.common.metamodels.nest_application_options import ( NestApplicationOptions, CorsOptions )
 
 def bootstrap():
     app = NestAplication(options=NestApplicationOptions(cors=CorsOptions(credentials=True)))
