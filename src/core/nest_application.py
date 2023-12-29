@@ -54,6 +54,11 @@ class NestAplication(INestAplication):
             router = controller().router
             self.app.include_router(router)
 
+        for module in self.appModule().imports:
+            for controller in module().controllers:
+                router = controller().router
+                self.app.include_router(router)
+
     def __openapi(self):
         if self.app.openapi_schema:
             return self.app.openapi_schema
