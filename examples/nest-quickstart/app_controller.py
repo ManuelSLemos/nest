@@ -1,5 +1,5 @@
-from packages.core.common.decorators.controller_decorator import Controller
-from packages.core.common.decorators.http_verbs_decorators import ( 
+from src.common.decorators.controller_decorator import Controller
+from src.common.decorators.http_verbs_decorators import ( 
     Delete, 
     Get, 
     Post, 

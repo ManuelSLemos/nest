@@ -1,4 +1,4 @@
-from packages.core.nest_application import NestAplication
+from src.core.nest_application import NestAplication
 from app_module import AppModule
 
 def bootstrap():

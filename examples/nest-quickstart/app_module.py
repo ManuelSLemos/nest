@@ -1,4 +1,4 @@
-from packages.core.common.decorators.module_decorator import Module
+from src.common.decorators.module_decorator import Module
 from app_controller import AppController
 
 @Module(

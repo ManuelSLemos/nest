@@ -24,7 +24,6 @@ class Controller:
                     attr = getattr(cls, attr_name)
                     if callable(attr) and hasattr(attr, "is_route"):
                         prefix, method = getattr(attr, "route_info")
-                        print(prefix, method)
                         self.router.add_api_route(prefix, attr, methods=[method])
 
 

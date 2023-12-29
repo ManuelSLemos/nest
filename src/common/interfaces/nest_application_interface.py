@@ -1,6 +1,6 @@
 from abc import ( ABC, abstractmethod )
 
-from packages.core.common.metamodels.nest_application_options import ( NestApplicationOptions, CorsOptions, SwaggerOptions )
+from src.common.metadata.nest_application_options import ( CorsOptions, SwaggerOptions )
 
 class INestAplication(ABC):
 

@@ -1,16 +1,13 @@
 from typing import ( List, Dict, Any )
 
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 
 import uvicorn
-import logging
 
-logger = logging.getLogger(__name__)
-
-from packages.core.common.interfaces.nest_application_interface import INestAplication
-from packages.core.common.metamodels.nest_application_options import ( NestApplicationOptions, CorsOptions, SwaggerOptions )
+from src.common.interfaces.nest_application_interface import INestAplication
+from src.common.metadata.nest_application_options import ( NestApplicationOptions, CorsOptions, SwaggerOptions )
 
 class NestAplication(INestAplication):
     
@@ -54,7 +51,6 @@ class NestAplication(INestAplication):
 
     def _register_modules(self):
         for controller in self.appModule().controllers:
-            logger.info(controller().prefix)
             router = controller().router
             self.app.include_router(router)
 

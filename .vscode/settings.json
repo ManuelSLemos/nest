@@ -1,6 +1,0 @@
-{
-    "conventionalCommits.scopes": [
-        "@nestpy/core",
-        "@nestpy/common"
-    ]
-}

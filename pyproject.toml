@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "@nestpy/core"
+name = "nestpy-framework"
 version = "0.1.0"
-description = "Modern, fast, powerful node.js web framework"
-authors = ["Manuel S. Lemos"]
+description = "Modern, fast, powerful python web framework"
+authors = ["Manuel S. Lemos <iam@manuelslemos.es>"]
 # readme = "README.md"
 license = "MIT"
-# packages = [{include = "nestpy"}]
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
