@@ -54,8 +54,9 @@ class NestAplication(INestAplication):
 
     def _register_modules(self):
         for controller in self.appModule().controllers:
-            logger.info(controller().path)
-            print(controller().path)
+            logger.info(controller().prefix)
+            router = controller().router
+            self.app.include_router(router)
 
     def __openapi(self):
         if self.app.openapi_schema:
