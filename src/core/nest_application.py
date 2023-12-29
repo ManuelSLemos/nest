@@ -13,7 +13,7 @@ class NestAplication(INestAplication):
     
     def __init__(
             self,
-            appModule: Any,
+            appModule: Any, # TODO: Change for type
             options: NestApplicationOptions = NestApplicationOptions()
         ):
             self.appModule = appModule
@@ -49,6 +49,7 @@ class NestAplication(INestAplication):
 
         uvicorn.run( self.app, host=host, port=port )
 
+    # TODO: Refactor controllers loader
     def _register_modules(self):
         for controller in self.appModule().controllers:
             router = controller().router
