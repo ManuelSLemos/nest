@@ -6,26 +6,9 @@ from src.common.decorators.http_verbs_decorators import (
     Put 
 )
 
-@Controller('/app')
+@Controller('/')
 class AppController:
     
     @Get('/')
     async def findAll():
         return {"Hello": "World"}
-
-    @Get('/{id}')
-    async def findById(id: str):
-        return {"Hello": id}
-
-    @Post('/')
-    async def create():
-        return {"Hello": "World"}
-
-    @Put('/{id}')
-    async def update(id: str):
-        return {"Hello": id}
-
-    @Delete('/{id}')
-    async def delete(id: str):
-        return {"Hello": id}
-
