@@ -1,0 +1,3 @@
+* research the servers property in swagger for globalPrefix and versioning api
+* research redirect for globalPrefix and main versioning api
+* chosee type server use in NestPy (By default uvicorn)

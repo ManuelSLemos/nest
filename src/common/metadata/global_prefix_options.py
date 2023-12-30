@@ -7,5 +7,5 @@ class Route(BaseModel):
     tag: str
 
 class GlobalPrefixOptions(BaseModel):
-    prefix: str = '/api'
     exclude: List[Route] = []
+    prefix: str = ''
