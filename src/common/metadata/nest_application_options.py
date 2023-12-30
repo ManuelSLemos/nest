@@ -2,6 +2,8 @@ from enum import Enum
 from pydantic import BaseModel
 from typing import ( Any, Dict, List, Optional, Union )
 
+from src.common.metadata.global_prefix_options import GlobalPrefixOptions
+
 # TODO: Create http verbs list 
 class CorsOptions(BaseModel):
     origins: List[str] = ['*']
@@ -30,6 +32,7 @@ class SwaggerOptions(BaseModel):
 
 class NestApplicationOptions(BaseModel):
     debug: bool = False
+    prefix: GlobalPrefixOptions = GlobalPrefixOptions()
     cors: CorsOptions = CorsOptions()
     swagger: SwaggerOptions = SwaggerOptions() #TODO: Refactor to docs and DocsOptions
 
