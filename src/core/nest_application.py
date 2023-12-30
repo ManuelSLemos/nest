@@ -76,9 +76,6 @@ class NestAplication(INestAplication):
             terms_of_service=self.options.docs.terms_of_service,
             contact=self.options.docs.contact,
             license_info=self.options.docs.license_info,
-            routes=self.app.routes,
-            webhooks=self.app.webhooks.routes,
-            tags=self.options.docs.tags,
             servers=self.options.docs.servers,
             separate_input_output_schemas=self.options.docs.separate_input_output_schemas,
         )
