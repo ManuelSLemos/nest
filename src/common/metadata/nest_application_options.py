@@ -31,5 +31,5 @@ class SwaggerOptions(BaseModel):
 class NestApplicationOptions(BaseModel):
     debug: bool = False
     cors: CorsOptions = CorsOptions()
-    swagger: SwaggerOptions = SwaggerOptions()
+    swagger: SwaggerOptions = SwaggerOptions() #TODO: Refactor to docs and DocsOptions
 

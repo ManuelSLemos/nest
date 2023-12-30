@@ -33,6 +33,10 @@ class INestAplication(ABC):
         pass
     
     @abstractmethod
+    def setGlobalPrefix(self, prefix: str, options = None) -> None:
+        pass
+
+    @abstractmethod
     def _register_modules(self):
         """
         Registers the modules from the app modules.

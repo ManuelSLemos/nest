@@ -49,6 +49,9 @@ class NestAplication(INestAplication):
 
         uvicorn.run( self.app, host=host, port=port )
 
+    def setGlobalPrefix(self, prefix: str, options = None) -> None:
+        pass
+
     # TODO: Refactor controllers loader
     def _register_modules(self):
         for controller in self.appModule().controllers:
