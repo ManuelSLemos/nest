@@ -37,7 +37,7 @@ class Controller:
 
                 return value
             
-            # TODO: Create options kind tag in SwaggerOptions
+            # TODO: Create options kind tag in DocsOptions
             def set_tag(self, value: str) -> Optional[List[str]]:
                 if value.__eq__('/'):
                     return ['/']

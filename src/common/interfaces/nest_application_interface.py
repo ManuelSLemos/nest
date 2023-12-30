@@ -1,6 +1,6 @@
 from abc import ( ABC, abstractmethod )
 
-from src.common.metadata.nest_application_options import ( CorsOptions, SwaggerOptions )
+from src.common.metadata.nest_application_options import ( CorsOptions, DocsOptions )
 
 class INestAplication(ABC):
 
@@ -9,11 +9,11 @@ class INestAplication(ABC):
         pass
 
     @abstractmethod
-    def enableSwaggerUI(self, options: SwaggerOptions = None):
+    def enableSwaggerUI(self, options: DocsOptions = None):
         pass
 
     @abstractmethod
-    def enableRedoc(self, options: SwaggerOptions = None):
+    def enableRedoc(self, options: DocsOptions = None):
         pass
 
     @abstractmethod

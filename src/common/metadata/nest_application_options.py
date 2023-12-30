@@ -15,7 +15,7 @@ class CorsOptions(BaseModel):
     # preflightContinue: Optional[bool] = None
     # optionsSuccessStatus: Optional[int] = None
 
-class SwaggerOptions(BaseModel):
+class DocsOptions(BaseModel):
     title: str = 'Nestpy API Documentation'
     version: str = '0.1.0'
     openapi_version: str = "3.1.0"
@@ -34,5 +34,5 @@ class NestApplicationOptions(BaseModel):
     debug: bool = False
     prefix: GlobalPrefixOptions = GlobalPrefixOptions()
     cors: CorsOptions = CorsOptions()
-    swagger: SwaggerOptions = SwaggerOptions() #TODO: Refactor to docs and DocsOptions
+    docs: DocsOptions = DocsOptions()
 

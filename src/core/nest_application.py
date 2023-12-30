@@ -7,7 +7,7 @@ from fastapi.openapi.utils import get_openapi
 import uvicorn
 
 from src.common.interfaces.nest_application_interface import INestAplication
-from src.common.metadata.nest_application_options import ( NestApplicationOptions, CorsOptions, SwaggerOptions )
+from src.common.metadata.nest_application_options import ( NestApplicationOptions, CorsOptions, DocsOptions )
 
 class NestAplication(INestAplication):
     
@@ -36,11 +36,11 @@ class NestAplication(INestAplication):
             max_age=options.maxAge
         )
 
-    def enableSwaggerUI(self, url: str = '/docs', options: SwaggerOptions = None) -> None:
+    def enableSwaggerUI(self, url: str = '/docs', options: DocsOptions = None) -> None:
         self.__enableOpenapi(options)
         self.app.docs_url = url
 
-    def enableRedoc(self, url: str = '/redoc', options: SwaggerOptions = None) -> None:
+    def enableRedoc(self, url: str = '/redoc', options: DocsOptions = None) -> None:
         self.__enableOpenapi(options)
         self.app.redoc_url = url
     
@@ -68,28 +68,28 @@ class NestAplication(INestAplication):
             return self.app.openapi_schema
 
         openapi_schema = get_openapi(
-            title=self.options.swagger.title,
-            version=self.options.swagger.version,
-            openapi_version=self.options.swagger.openapi_version,
-            summary=self.options.swagger.summary,
-            description=self.options.swagger.description,
-            terms_of_service=self.options.swagger.terms_of_service,
-            contact=self.options.swagger.contact,
-            license_info=self.options.swagger.license_info,
+            title=self.options.docs.title,
+            version=self.options.docs.version,
+            openapi_version=self.options.docs.openapi_version,
+            summary=self.options.docs.summary,
+            description=self.options.docs.description,
+            terms_of_service=self.options.docs.terms_of_service,
+            contact=self.options.docs.contact,
+            license_info=self.options.docs.license_info,
             routes=self.app.routes,
             webhooks=self.app.webhooks.routes,
-            tags=self.options.swagger.tags,
-            servers=self.options.swagger.servers,
-            separate_input_output_schemas=self.options.swagger.separate_input_output_schemas,
+            tags=self.options.docs.tags,
+            servers=self.options.docs.servers,
+            separate_input_output_schemas=self.options.docs.separate_input_output_schemas,
         )
 
         self.app.openapi_schema = openapi_schema
 
         return self.app.openapi_schema
 
-    def __enableOpenapi(self, options: SwaggerOptions = None):
+    def __enableOpenapi(self, options: DocsOptions = None):
         if options is not None:
-            self.options.swagger = options
+            self.options.docs = options
 
         self.app.openapi = self.__openapi
 
