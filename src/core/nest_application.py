@@ -78,6 +78,8 @@ class NestAplication(INestAplication):
             license_info=self.options.docs.license_info,
             servers=self.options.docs.servers,
             separate_input_output_schemas=self.options.docs.separate_input_output_schemas,
+            routes=self.app.routes,
+            webhooks=self.app.webhooks.routes,
         )
 
         self.app.openapi_schema = openapi_schema

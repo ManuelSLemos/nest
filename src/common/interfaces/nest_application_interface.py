@@ -1,6 +1,10 @@
 from abc import ( ABC, abstractmethod )
 
-from src.common.metadata.nest_application_options import ( CorsOptions, DocsOptions )
+from src.common.metadata.nest_application_options import ( 
+    CorsOptions, 
+    DocsOptions, 
+    GlobalPrefixOptions 
+)
 
 class INestAplication(ABC):
 
@@ -33,7 +37,7 @@ class INestAplication(ABC):
         pass
     
     @abstractmethod
-    def setGlobalPrefix(self, prefix: str, options = None) -> None:
+    def setGlobalPrefix(self, prefix: str, options: GlobalPrefixOptions = None) -> None:
         pass
 
     @abstractmethod
