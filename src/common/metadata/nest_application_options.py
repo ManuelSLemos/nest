@@ -29,7 +29,7 @@ class DocsOptions(BaseModel):
 
 class NestApplicationOptions(BaseModel):
     debug: bool = False
-    prefix: GlobalPrefixOptions = GlobalPrefixOptions()
+    globalPrefix: bool | GlobalPrefixOptions = False
     cors: CorsOptions = CorsOptions()
     docs: DocsOptions = DocsOptions()
 

@@ -7,7 +7,12 @@ from fastapi.openapi.utils import get_openapi
 import uvicorn
 
 from src.common.interfaces.nest_application_interface import INestAplication
-from src.common.metadata.nest_application_options import ( NestApplicationOptions, CorsOptions, DocsOptions )
+from src.common.metadata.nest_application_options import ( 
+    NestApplicationOptions, 
+    CorsOptions, 
+    DocsOptions, 
+    GlobalPrefixOptions 
+)
 
 class NestAplication(INestAplication):
     
@@ -45,12 +50,20 @@ class NestAplication(INestAplication):
         self.app.redoc_url = url
     
     def listen(self, host: str = '0.0.0.0', port: int = 8080) -> None:
-        self.app.setup()
+        self.setup()
 
         uvicorn.run( self.app, host=host, port=port )
 
-    def setGlobalPrefix(self, prefix: str, options = None) -> None:
-        pass
+    def setup(self):
+        if self.options.globalPrefix: self._enableGlobalPrefix()
+
+        self.app.setup()
+
+    def setGlobalPrefix(self, prefix: str, options: GlobalPrefixOptions = None) -> None:
+        if options is not None:
+            self.options.globalPrefix = options
+
+        self.options.globalPrefix = GlobalPrefixOptions(prefix=prefix)
 
     # TODO: Refactor controllers loader
     def _register_modules(self):
@@ -63,6 +76,15 @@ class NestAplication(INestAplication):
                 router = controller().router
                 self.app.include_router(router)
 
+    def _enableGlobalPrefix(self):
+        typeOption = type(self.options.globalPrefix)
+        if typeOption == bool: self.options.globalPrefix = GlobalPrefixOptions()
+
+        routes = self.app
+        app = FastAPI( debug = self.options.debug, docs_url=None, redoc_url=None )
+        app.mount(self.options.globalPrefix.prefix, routes)
+        self.app = app
+    
     def __openapi(self):
         if self.app.openapi_schema:
             return self.app.openapi_schema

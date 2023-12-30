@@ -4,6 +4,8 @@ from app_module import AppModule
 def bootstrap():
     app = NestAplication( AppModule )
 
+    app.setGlobalPrefix( '/api' )
+
     app.enableSwaggerUI('/docs')
     app.enableRedoc('/redoc')
 
