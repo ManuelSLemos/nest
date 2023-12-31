@@ -2,8 +2,6 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import ( Any, List, Optional )
 
-
-
 class Route(BaseModel):
     prefix: str
     attr: Any
@@ -24,7 +22,6 @@ class Controller:
                 super().__init__(*args, **kwargs)
                 self.prefix = self.set_prefix(decorator.prefix)
                 self.tags = self.set_tag(decorator.prefix)
-                self.router = APIRouter(prefix=self.prefix, tags=self.tags)
                 self.routes = self.set_routes()
 
             def set_routes(self) -> List[Any]:
