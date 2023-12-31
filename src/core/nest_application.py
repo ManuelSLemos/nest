@@ -2,7 +2,7 @@ from typing import ( Any, List )
 
 from fastapi import FastAPI, APIRouter
 
-from src.common.metadata.nest_application_options import ( NestApplicationOptions )
+from src.common.metadata.nest_application_options import ( NestApplicationOptions, GlobalPrefixOptions )
 from src.common.decorators.module_decorator import Module
 
 import uvicorn
@@ -48,4 +48,10 @@ class NestAplication():
         self._setup()
 
         uvicorn.run(self.nest, host=host, port=port)
+
+    def setGlobalPrefix(self, prefix: str, options: GlobalPrefixOptions = None) -> None:
+        if options is not None:
+            self.options.globalPrefix = options
+
+        self.options.globalPrefix = GlobalPrefixOptions(prefix=prefix)
     
