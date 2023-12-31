@@ -1,6 +1,13 @@
 from fastapi import APIRouter
-
+from pydantic import BaseModel
 from typing import ( Any, List, Optional )
+
+
+
+class Route(BaseModel):
+    prefix: str
+    attr: Any
+    method: str
 
 
 # TODO: Consider whether to implement host param
@@ -18,15 +25,24 @@ class Controller:
                 self.prefix = self.set_prefix(decorator.prefix)
                 self.tags = self.set_tag(decorator.prefix)
                 self.router = APIRouter(prefix=self.prefix, tags=self.tags)
-                
-                cls = ClassBasedView
+                self.routes = self.set_routes()
 
-                for attr_name in dir(cls):
-                    attr = getattr(cls, attr_name)
-                    if callable(attr) and hasattr(attr, "is_route"):
-                        prefix, method = getattr(attr, "route_info")
-                        self.router.add_api_route(prefix, attr, methods=[method])
+            def set_routes(self) -> List[Any]:
+                endpoints = []
 
+                for attr_name in dir(ClassBasedView):
+                    attr = getattr(ClassBasedView, attr_name)
+
+                    if callable(attr) and hasattr(attr, 'is_route'):
+                        prefix, method = getattr(attr, 'route_info')
+
+                        endpoints.append(Route(
+                            prefix=prefix,
+                            attr=attr,
+                            method=method                
+                        ))
+
+                return endpoints
             
             def set_prefix(self, value: str) -> str:
                 if not value.startswith("/"):

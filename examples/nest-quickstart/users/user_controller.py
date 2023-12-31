@@ -10,22 +10,22 @@ from src.common.decorators.http_verbs_decorators import (
 class UserController:
     
     @Get('/')
-    async def findAll():
+    async def findAll() -> str:
         return {"Hello": "World"}
 
     @Get('/{id}')
-    async def findById(id: str):
+    async def findById(id: str) -> str:
         return {"Hello": id}
 
     @Post('/')
-    async def create():
+    async def create() -> str:
         return {"Hello": "World"}
 
     @Put('/{id}')
-    async def update(id: str):
+    async def update(id: str) -> str:
         return {"Hello": id}
 
     @Delete('/{id}')
-    async def delete(id: str):
+    async def delete(id: str) -> str:
         return {"Hello": id}
 
