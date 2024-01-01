@@ -13,13 +13,6 @@ class CorsOptions(BaseModel):
     maxAge: int = 3600
     # preflightContinue: Optional[bool] = None
     # optionsSuccessStatus: Optional[int] = None
-
-class VersioningOptions(BaseModel):
-    type: str
-    defaultVersioning: str
-    header: str
-    key: str
-
 class DocsOptions(BaseModel):
     title: str = 'Nestpy API Documentation'
     version: str = '0.1.0'
@@ -32,11 +25,18 @@ class DocsOptions(BaseModel):
     license_info: Optional[Dict[str, Union[str, Any]]] = None
     separate_input_output_schemas: bool = True
 
+class VersioningOptions(BaseModel):
+    type: str
+    defaultVersioning: str
+    header: str
+    key: str
+
 class NestApplicationOptions(BaseModel):
     debug: bool = False
     globalPrefix: bool | GlobalPrefixOptions = False
     versioning: bool | VersioningOptions = False
     cors: CorsOptions = CorsOptions()
     docs: DocsOptions = DocsOptions()
+
 
 

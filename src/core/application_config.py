@@ -1,3 +1,5 @@
+from src.common.metadata import GlobalPrefixOptions, VersioningOptions
+
 class SingletonMeta(type):
     _instances = {}
 
@@ -9,6 +11,6 @@ class SingletonMeta(type):
 
 class ApplicationConfig(metaclass=SingletonMeta):
     def __init__(self):
-        self.globalPrefix
-        self.versioning
+        self.globalPrefix: GlobalPrefixOptions
+        self.versioning: VersioningOptions
 
