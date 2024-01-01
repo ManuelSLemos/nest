@@ -1,4 +1,3 @@
-from enum import Enum
 from pydantic import BaseModel
 from typing import ( Any, Dict, List, Optional, Union )
 
@@ -15,6 +14,12 @@ class CorsOptions(BaseModel):
     # preflightContinue: Optional[bool] = None
     # optionsSuccessStatus: Optional[int] = None
 
+class VersioningOptions(BaseModel):
+    type: str
+    defaultVersioning: str
+    header: str
+    key: str
+
 class DocsOptions(BaseModel):
     title: str = 'Nestpy API Documentation'
     version: str = '0.1.0'
@@ -30,6 +35,8 @@ class DocsOptions(BaseModel):
 class NestApplicationOptions(BaseModel):
     debug: bool = False
     globalPrefix: bool | GlobalPrefixOptions = False
+    versioning: bool | VersioningOptions = False
     cors: CorsOptions = CorsOptions()
     docs: DocsOptions = DocsOptions()
+
 

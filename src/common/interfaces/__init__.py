@@ -1,1 +1,1 @@
-__version__ = "0.1.0"
+from .nest_application_interface import INestAplication as INestAplication

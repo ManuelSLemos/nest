@@ -1,4 +1,5 @@
 from abc import ( ABC, abstractmethod )
+from typing import List
 
 from src.common.metadata.nest_application_options import ( 
     CorsOptions, 
@@ -6,44 +7,18 @@ from src.common.metadata.nest_application_options import (
     GlobalPrefixOptions 
 )
 
+from src.common.enums import VersioningType 
+
 class INestAplication(ABC):
 
     @abstractmethod
-    def enableCors(self, options: CorsOptions = None):
+    def enableVersioning(self, type: VersioningType, defaultVersioning: str) -> None:
         pass
 
     @abstractmethod
-    def enableSwaggerUI(self, options: DocsOptions = None):
-        pass
-
-    @abstractmethod
-    def enableRedoc(self, options: DocsOptions = None):
-        pass
-
-    @abstractmethod
-    def listen(self, host: str = '0.0.0.0', port: int = 8080) -> None:
-        """Starts the application.
-
-        Parameters
-        ----------
-
-        port : int, optional
-        host : str, optional
-    
-        Returns
-        -------
-
-        """    
+    def listen(self, host: str = '0.0.0.0', port: int = 8080) -> None:    
         pass
     
     @abstractmethod
-    def setGlobalPrefix(self, prefix: str, options: GlobalPrefixOptions = None) -> None:
+    def setGlobalPrefix(self, prefix: str, exclude: List[str] = []) -> None:
         pass
-
-    @abstractmethod
-    def _register_modules(self):
-        """
-        Registers the modules from the app modules.
-        """
-        pass
-

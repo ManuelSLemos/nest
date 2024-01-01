@@ -2,12 +2,14 @@ from typing import ( Any, List )
 
 from fastapi import FastAPI, APIRouter
 
-from src.common.metadata.nest_application_options import ( NestApplicationOptions, GlobalPrefixOptions )
+from src.common.enums import VersioningType
 from src.common.decorators.module_decorator import Module
+from src.common.interfaces import INestAplication
+from src.common.metadata.nest_application_options import ( NestApplicationOptions, GlobalPrefixOptions, VersioningOptions )
 
 import uvicorn
 
-class NestAplication():
+class NestAplication(INestAplication):
 
     def __init__(self, 
         appModule: Module, 
@@ -27,9 +29,16 @@ class NestAplication():
                 prefix= '/api' if value.globalPrefix else ''
             )
 
+        if type(value.versioning == bool):
+            value.versioning = VersioningOptions(
+                type=VersioningType.URI,
+                defaultVersioning='1'
+            )
+        
         return value
 
     def _setup(self) -> None:
+        self._setupVersioning()
         self._setupModule()
 
     def _setupModule(self) -> None:
@@ -55,6 +64,24 @@ class NestAplication():
 
             self.nest.include_router(router)
     
+    def _setupVersioning(self) -> None:
+        options = self.config.versioning
+
+        if options.type == VersioningType.URI:
+            pass
+
+        if options.type == VersioningType.HEADER:
+            pass
+
+        if options.type == VersioningType.MEDIA_TYPE:
+            pass
+
+        if options.type == VersioningType.CUSTOM:
+            pass
+
+    def enableVersioning(self, type: VersioningType, defaultVersioning: str) -> None:
+        pass
+
     def listen(self, host: str = '0.0.0.0', port: int = 8080) -> None:
         self._setup()
 
